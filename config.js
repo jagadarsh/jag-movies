@@ -1,7 +1,7 @@
 // ===== JAG MOVIES CONFIG =====
 // Replace with your TMDB API key
 const CONFIG = {
-  TMDB_KEY: 'YOUR_TMDB_API_KEY_HERE',
+  TMDB_KEY: 'becf3577399a595af400150ddcb6edcf',
   TMDB_BASE: 'https://api.themoviedb.org/3',
   TMDB_IMG: 'https://image.tmdb.org/t/p',
   VIDKING_BASE: 'https://vidking.net',
