@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="JAG Movies — stream movies and TV shows for free"/>
+  <title>JAG Movies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PASSWORD GATE
+════════════════════════════════════════════════════════════ -->
+<div id="gate">
+  <div class="gate-bg"></div>
+  <div class="gate-wrap">
+    <div class="gate-logo">JAG<span>MOVIES</span></div>
+    <p class="gate-sub">Members Only</p>
+
+    <div class="gate-field" id="gateField">
+      <input type="password" id="gateInput" placeholder="Enter password…" autocomplete="off"/>
+      <button id="gateBtn">Enter</button>
+    </div>
+    <p class="gate-err" id="gateErr"></p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN APP
+════════════════════════════════════════════════════════════ -->
+<div id="app" class="hidden">
+
+  <!-- ── NAVIGATION ─────────────────────────────────────── -->
+  <nav id="mainNav" class="nav">
+    <div class="nav-logo" data-nav="home">JAG<span>MOVIES</span></div>
+
+    <div class="nav-links">
+      <span class="nav-link active" data-nav="home">Home</span>
+      <span class="nav-link" data-nav="movies">Movies</span>
+      <span class="nav-link" data-nav="series">Series</span>
+      <span class="nav-link" data-nav="genres">Genres</span>
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-search">
+        <input id="navSearch" type="text" placeholder="Search titles…"/>
+        <button id="navSearchBtn" aria-label="Search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+      </div>
+      <button class="nav-icon-btn" title="Account" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HOME VIEW
+  ════════════════════════════════════════════════════════ -->
+  <div id="homeView">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-backdrop" id="heroBg"></div>
+      <div class="hero-gradient"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Trending Now</div>
+        <h1 class="hero-title" id="heroTitle">Loading…</h1>
+        <div class="hero-meta" id="heroMeta"></div>
+        <p class="hero-overview" id="heroOverview"></p>
+        <div class="hero-actions">
+          <button class="btn-primary" id="heroBtnPlay">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            Play
+          </button>
+          <button class="btn-secondary" id="heroBtnInfo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+            </svg>
+            More Info
+          </button>
+        </div>
+      </div>
+      <div class="hero-dots" id="heroDots"></div>
+    </section>
+
+    <!-- ROWS -->
+    <div class="main-content">
+
+      <!-- Continue Watching -->
+      <div id="continueSection" class="row-section fade-in" style="display:none">
+        <div class="row-header">
+          <h2 class="row-heading">Continue Watching</h2>
+        </div>
+        <div class="row-track" id="continueTrack"></div>
+      </div>
+
+      <!-- Trending -->
+      <div class="row-section fade-in">
+        <div class="row-header">
+          <h2 class="row-heading">Trending Now</h2>
+          <span class="row-see-all" data-nav="movies">See all</span>
+        </div>
+        <div class="row-track" id="rowTrending"></div>
+      </div>
+
+      <!-- Top Rated -->
+      <div class="row-section fade-in">
+        <div class="row-header">
+          <h2 class="row-heading">Top Rated</h2>
+        </div>
+        <div class="row-track" id="rowTopRated"></div>
+      </div>
+
+      <!-- Action -->
+      <div class="row-section fade-in">
+        <div class="row-header">
+          <h2 class="row-heading">Action &amp; Adventure</h2>
+        </div>
+        <div class="row-track" id="rowAction"></div>
+      </div>
+
+      <!-- Comedy -->
+      <div class="row-section fade-in">
+        <div class="row-header">
+          <h2 class="row-heading">Comedy</h2>
+        </div>
+        <div class="row-track" id="rowComedy"></div>
+      </div>
+
+      <!-- Horror -->
+      <div class="row-section fade-in">
+        <div class="row-header">
+          <h2 class="row-heading">Horror</h2>
+        </div>
+        <div class="row-track" id="rowHorror"></div>
+      </div>
+
+      <!-- Sci-Fi -->
+      <div class="row-section fade-in">
+        <div class="row-header">
+          <h2 class="row-heading">Sci-Fi</h2>
+        </div>
+        <div class="row-track" id="rowScifi"></div>
+      </div>
+
+      <!-- Series -->
+      <div class="row-section fade-in">
+        <div class="row-header">
+          <h2 class="row-heading">Popular Series</h2>
+          <span class="row-see-all" data-nav="series">See all</span>
+        </div>
+        <div class="row-track" id="rowSeries"></div>
+      </div>
+
+    </div><!-- /main-content -->
+  </div><!-- /homeView -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       MOVIES PAGE
+  ════════════════════════════════════════════════════════ -->
+  <div id="moviesView" class="page-view hidden">
+    <h1 class="page-title" id="moviesPageTitle">Movies</h1>
+    <div class="filter-pills" id="movieFilterPills"></div>
+    <div class="grid-view" id="moviesGrid"></div>
+    <button class="load-more" onclick="loadMoreMovies()">Load More</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SERIES PAGE
+  ════════════════════════════════════════════════════════ -->
+  <div id="seriesView" class="page-view hidden">
+    <h1 class="page-title">Series</h1>
+    <div class="grid-view" id="seriesGrid"></div>
+    <button class="load-more" onclick="loadMoreSeries()">Load More</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       GENRES PAGE
+  ════════════════════════════════════════════════════════ -->
+  <div id="genresView" class="page-view hidden">
+    <h1 class="page-title">Browse by Genre</h1>
+    <div class="genres-grid" id="genresGrid"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SEARCH PAGE
+  ════════════════════════════════════════════════════════ -->
+  <div id="searchView" class="page-view hidden">
+    <h1 class="page-title">Results for <span id="searchQuery"></span></h1>
+    <div class="grid-view" id="searchGrid"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">JAG<span>MOVIES</span></div>
+    <p class="footer-text">For entertainment purposes only. All streams are provided by third-party embeds.</p>
+  </footer>
+
+</div><!-- /app -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     DETAIL MODAL
+════════════════════════════════════════════════════════════ -->
+<div id="detailModal" class="modal hidden">
+  <div class="modal-backdrop" onclick="closeDetail()"></div>
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeDetail()">✕</button>
+
+    <!-- hero backdrop -->
+    <div class="modal-hero">
+      <img id="mBackdrop" src="" alt=""/>
+      <div class="modal-hero-grad"></div>
+      <div class="modal-hero-content">
+        <h1 id="mTitle"></h1>
+        <div class="modal-hero-btns">
+          <button class="btn-primary" id="mBtnPlay">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            Play
+          </button>
+          <button class="btn-watchlist" id="mBtnWL" onclick="toggleWatchlist()">+ Watchlist</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- pills: year, runtime, rating, imdb -->
+      <div class="modal-pills" id="mPills"></div>
+
+      <!-- overview -->
+      <p class="modal-overview" id="mOverview"></p>
+
+      <!-- genres -->
+      <div class="modal-genres" id="mGenres"></div>
+
+      <!-- extra info grid -->
+      <div class="modal-section">
+        <div class="modal-info-grid" id="mInfoGrid"></div>
+      </div>
+
+      <!-- seasons + episodes (TV only) -->
+      <div class="modal-section" id="mSeasonsSection">
+        <div class="modal-section-title">Episodes</div>
+        <div class="season-tabs" id="mSeasonTabs"></div>
+        <div class="episodes-list" id="mEpisodesList"></div>
+      </div>
+
+      <!-- cast -->
+      <div class="modal-section">
+        <div class="modal-section-title">Cast</div>
+        <div class="cast-row" id="mCastRow"></div>
+      </div>
+
+      <!-- recommendations -->
+      <div class="modal-section" id="mRecsSection">
+        <div class="modal-section-title">More Like This</div>
+        <div class="recs-row" id="mRecsRow"></div>
+      </div>
+
+    </div><!-- /modal-body -->
+  </div><!-- /modal-box -->
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PLAYER MODAL
+════════════════════════════════════════════════════════════ -->
+<div id="playerModal" class="modal hidden">
+  <div class="modal-backdrop" onclick="closePlayer()"></div>
+  <div class="player-box">
+    <div class="player-topbar">
+      <span class="player-topbar-title" id="playerLabel"></span>
+      <button class="modal-close" style="position:static;background:rgba(255,255,255,.06)" onclick="closePlayer()">✕</button>
+    </div>
+    <div class="player-ratio">
+      <iframe id="playerFrame"
+        allowfullscreen
+        allow="autoplay; fullscreen; picture-in-picture"
+        referrerpolicy="no-referrer">
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- scripts -->
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
