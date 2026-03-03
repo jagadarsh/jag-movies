@@ -6,7 +6,7 @@
 const CFG = {
   // ─── REQUIRED ─────────────────────────────────────────────
   // Get a free v3 API key at https://www.themoviedb.org/settings/api
-  TMDB_KEY: 'YOUR_TMDB_API_KEY_HERE',
+  TMDB_KEY: 'becf3577399a595af400150ddcb6edcf',
 
   // Site password gate
   PASSWORD: 'minceraftsmp',
